@@ -6,6 +6,9 @@ The project includes sample entities, DAO and service layers, along with JUnit t
 See an example of a DAO method:
 
 ```java
+final static DynamicJdbcMapper EMPLOYEE_MAPPER =
+       JdbcMapperFactory.newInstance().newMapper(Employee.class);
+
 public List<Employee> findAllEmployees(Long id) throws SQLException {
     var sql = """
             SELECT e.id
