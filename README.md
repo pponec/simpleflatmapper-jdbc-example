@@ -1,6 +1,6 @@
 # simpleflatmapper-jdbc-example
 
-Example project showcasing JDBC mapping with SimpleFlatMapper — a lightweight library that makes JDBC easy, fast, and safe to use.
+Example project showcasing JDBC mapping with [SimpleFlatMapper](https://simpleflatmapper.org/) — a lightweight library that makes JDBC easy, fast, and safe to use.
 Includes sample entities, DAO and service layers, along with JUnit tests for studying repository and mapping patterns.
 
 See an example of a DAO method:
