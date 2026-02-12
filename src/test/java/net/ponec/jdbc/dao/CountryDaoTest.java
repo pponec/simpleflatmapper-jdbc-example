@@ -12,7 +12,7 @@ class CountryDaoTest extends AbstractDaoTest {
     @Test
     void insertCountry() throws SQLException {
         var country = Country.of(null, "test");
-        var countryDao = new CountryDao(connection);
+        var countryDao = new CountryDao(dbConnection);
 
         countryDao.create(country);
         Assertions.assertNotNull(country.getId());

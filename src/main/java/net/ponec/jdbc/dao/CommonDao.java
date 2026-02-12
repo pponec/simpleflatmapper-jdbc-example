@@ -41,15 +41,20 @@ public class CommonDao {
                    , city_id BIGINT NOT NULL
                    , contract_day DATE NULL
                    );
-                ALTER TABLE employee ADD CONSTRAINT fk_employee_superior_id__id FOREIGN KEY (superior_id)
-                      REFERENCES EMPLOYEE(id) ON DELETE RESTRICT ON UPDATE RESTRICT;
-                ALTER TABLE employee ADD CONSTRAINT fk_employee_department_id__id FOREIGN KEY (department_id)
-                      REFERENCES DEPARTMENT(ID) ON DELETE RESTRICT ON UPDATE RESTRICT;
-                ALTER TABLE employee ADD CONSTRAINT fk_employee_city_id__id FOREIGN KEY (city_id)
-                      REFERENCES CITY(id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+                ALTER TABLE employee ADD CONSTRAINT fk_employee_superior_id__id
+                      FOREIGN KEY (superior_id)
+                      REFERENCES employee(id)
+                      ON DELETE RESTRICT ON UPDATE RESTRICT;
+                ALTER TABLE employee ADD CONSTRAINT fk_employee_department_id__id
+                      FOREIGN KEY (department_id)
+                      REFERENCES department(id)
+                      ON DELETE RESTRICT ON UPDATE RESTRICT;
+                ALTER TABLE employee ADD CONSTRAINT fk_employee_city_id__id
+                      FOREIGN KEY (city_id)
+                      REFERENCES city(id)
+                      ON DELETE RESTRICT ON UPDATE RESTRICT;
                 """;
         try (var builder = new SqlParamBuilder(dbConnection)) {
-
             Stream.of(sqlStatements.split(";"))
                     .filter(sql -> !sql.trim().isEmpty())
                     .forEach(sql -> {

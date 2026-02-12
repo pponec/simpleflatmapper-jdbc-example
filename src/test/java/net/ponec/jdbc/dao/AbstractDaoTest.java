@@ -1,5 +1,6 @@
 package net.ponec.jdbc.dao;
 
+import net.ponec.jdbc.service.EmployeeService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.ujorm.tools.sql.SqlParamBuilder;
@@ -10,29 +11,34 @@ import java.sql.SQLException;
 
 abstract public class AbstractDaoTest {
 
-    protected Connection connection;
+    protected Connection dbConnection;
 
     /** Set up the database connection and initialize tables before each test. */
     @BeforeEach
     void setUp() throws SQLException {
-        this.connection = getConnection();
+        this.dbConnection = getDbConnection();
     }
 
     /** Rollback the transaction and close the connection after each test.
      * The try-finally block ensures the connection is closed even if rollback fails. */
     @AfterEach
     void tearDown() throws SQLException {
-        if (connection != null) {
+        if (dbConnection != null) {
             try {
-                connection.rollback();
+                dbConnection.rollback();
             } finally {
-                connection.close();
+                dbConnection.close();
             }
         }
     }
 
+
+    protected void loadDemoData() throws SQLException {
+        EmployeeService.of(dbConnection).initData();
+    }
+
     protected SqlParamBuilder sqlBuilder() {
-        return new SqlParamBuilder(connection);
+        return new SqlParamBuilder(dbConnection);
     }
 
     /**
@@ -42,7 +48,7 @@ abstract public class AbstractDaoTest {
      * @return The configured database connection
      * @throws SQLException If a database error occurs
      */
-    private Connection getConnection() throws SQLException {
+    private Connection getDbConnection() throws SQLException {
         var jdbcUrl = "jdbc:h2:mem:testdb";
         var databaseUser = "sa";
         var databasePassword = "";

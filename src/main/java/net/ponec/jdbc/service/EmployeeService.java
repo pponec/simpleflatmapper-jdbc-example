@@ -30,9 +30,8 @@ public class EmployeeService {
         countryDao.createAll(countries);
         cityDao.createAll(cities);
         departmentDao.createAll(departments);
-        employeeDao.createAll(employees);
+        employeeDao.createAllIndividually(employees);
     }
-
 
     public List<Employee> employees() {
         return List.of();

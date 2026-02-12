@@ -15,8 +15,11 @@ import java.util.function.BiConsumer;
 /** T represents the Entity type, K represents the Primary Key type */
 public class GenericCrudManager<T, K> {
 
+    @NotNull
     private final Crud<T, K> crudOperation;
+    @NotNull
     private final Connection connection;
+    @NotNull
     private final BiConsumer<T, K> idSetter;
 
     /** Suppress unchecked cast warning because reflection type resolution is dynamic */
@@ -58,6 +61,13 @@ public class GenericCrudManager<T, K> {
                 idSetter.accept(currentEntity, key);
             }
         });
+    }
+
+    /** Inserts all provided entities individually and updates their generated keys. */
+    public void createAllIndividually(@NotNull Collection<T> entities) throws SQLException {
+        for (var entity : entities) {
+            create(entity);
+        }
     }
 
     /** Read an entity by its primary key */
