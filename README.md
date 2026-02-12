@@ -14,13 +14,13 @@ public List<Employee> findAllEmployees(Long id) throws SQLException {
                  , e.department_id
                  , d.name AS department_name
                  , e.contract_day
-                 , y.name AS city_country_name
+                 , r.name AS city_country_name
                  , e.superior_id
                  , s.name AS superior_name
             FROM employee e
             JOIN department d ON d.id = e.department_id
             JOIN city c ON c.id = e.city_id
-            JOIN country y ON y.id = c.country_id
+            JOIN country r ON r.id = c.country_id
             LEFT JOIN employee s ON s.id = e.superior_id
             WHERE e.id >= :id
             ORDER BY e.id
