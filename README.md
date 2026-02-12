@@ -6,7 +6,10 @@ The project includes sample entities, DAO and service layers, along with JUnit t
 See an example of a DAO method:
 
 ```java
-public List<Employee> findAllEmployees(Long id) throws SQLException {
+final static DynamicJdbcMapper EMPLOYEE_MAPPER =
+       JdbcMapperFactory.newInstance().newMapper(Employee.class);
+
+public List<Employee> findAllEmployees(Long minId) throws SQLException {
     var sql = """
             SELECT e.id
                  , e.name
@@ -14,13 +17,13 @@ public List<Employee> findAllEmployees(Long id) throws SQLException {
                  , e.department_id
                  , d.name AS department_name
                  , e.contract_day
-                 , y.name AS city_country_name
+                 , r.name AS city_country_name
                  , e.superior_id
                  , s.name AS superior_name
             FROM employee e
             JOIN department d ON d.id = e.department_id
             JOIN city c ON c.id = e.city_id
-            JOIN country y ON y.id = c.country_id
+            JOIN country r ON r.id = c.country_id
             LEFT JOIN employee s ON s.id = e.superior_id
             WHERE e.id >= :id
             ORDER BY e.id
@@ -28,7 +31,7 @@ public List<Employee> findAllEmployees(Long id) throws SQLException {
     try (var builder = new SqlParamBuilder(connection) {
         return builder
                 .sql(sql)
-                .bind("id", id)
+                .bind("id", minId)
                 .streamMap(EMPLOYEE_MAPPER::map)
                 .toList();
     }
