@@ -58,4 +58,3 @@ public class Employee {
 ```
 
 For more information about [SqlParamBuilder](https://github.com/pponec/PPScriptsForJava/blob/22c7f7995f8708268bab5ab61f5a10778c302adb/src/main/java/net/ponec/script/SqlExecutor.java#L130) class see the [home page](https://github.com/pponec/PPScriptsForJava/blob/main/docs/SqlParamBuilder.md).
-For the 

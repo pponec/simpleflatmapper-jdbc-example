@@ -10,7 +10,6 @@ import org.jetbrains.annotations.Nullable;
 import java.time.LocalDate;
 
 @Getter @Setter @ToString @EqualsAndHashCode
-@NoArgsConstructor
 @AllArgsConstructor(staticName = "of")
 @Table(name = "employee")
 public class Employee {
