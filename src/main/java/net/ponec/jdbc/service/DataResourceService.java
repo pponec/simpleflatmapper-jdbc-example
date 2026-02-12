@@ -1,8 +1,5 @@
 package net.ponec.jdbc.service;
 
-import lombok.RequiredArgsConstructor;
-import net.ponec.jdbc.dao.*;
-import net.ponec.jdbc.dao.CountryDao;
 import net.ponec.jdbc.entity.City;
 import net.ponec.jdbc.entity.Country;
 import net.ponec.jdbc.entity.Department;
@@ -15,6 +12,7 @@ import java.util.List;
 
 public class DataResourceService {
 
+    /** Get employees to save into database. */
     public List<Employee> employees() {
         var countryObj = Country.of(null, "France");
         var cityObj = City.of(null, "Paris", countryObj);

@@ -14,6 +14,7 @@ public class CommonDao {
 
     final Connection dbConnection;
 
+    /** Create database tables */
     public void initTables() throws SQLException {
         if (hasTables()) {
             return;

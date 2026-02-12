@@ -1,13 +1,16 @@
 package net.ponec.jdbc.dao;
 
+import net.ponec.jdbc.service.DataResourceService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import java.sql.SQLException;
 
 class EmployeeDaoTest extends AbstractDaoTest {
 
-    /** Test the creation and retrieval of a Country entity. */
+    /** Test the creation and retrieval of a Country entity.
+     * <br/>
+     * See a database data: {@link DataResourceService#employees()}
+     **/
     @Test
     void selectEmployeesBySimpleflatmapper() throws SQLException {
         loadDemoData();
@@ -28,8 +31,11 @@ class EmployeeDaoTest extends AbstractDaoTest {
         Assertions.assertNotNull(employee3.getSuperior().getName());
         Assertions.assertEquals("George", employee3.getSuperior().getName());
 
+        // Sessions are not identical objects, the framework does not support this.
+        Assertions.assertNotSame(employee1.getCity(), employee3.getCity(),
+                "Expected the same cities");
+        Assertions.assertNotSame(employee1.getDepartment(), employee3.getDepartment(),
+                "Expected the same departments");
 
     }
-
-
 }

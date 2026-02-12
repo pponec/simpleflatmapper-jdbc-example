@@ -21,6 +21,7 @@ public class EmployeeService {
 
     private final DataResourceService dataProvider = new DataResourceService();
 
+    /** Save demo employees into database */
     public void initData() throws SQLException {
         var employees = dataProvider.employees();
         var departments = dataProvider.extractUniqueDepartments(employees);
