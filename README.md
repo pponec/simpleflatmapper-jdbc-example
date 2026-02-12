@@ -9,7 +9,7 @@ See an example of a DAO method:
 final static DynamicJdbcMapper EMPLOYEE_MAPPER =
        JdbcMapperFactory.newInstance().newMapper(Employee.class);
 
-public List<Employee> findAllEmployees(Long id) throws SQLException {
+public List<Employee> findAllEmployees(Long minId) throws SQLException {
     var sql = """
             SELECT e.id
                  , e.name
@@ -31,7 +31,7 @@ public List<Employee> findAllEmployees(Long id) throws SQLException {
     try (var builder = new SqlParamBuilder(connection) {
         return builder
                 .sql(sql)
-                .bind("id", id)
+                .bind("id", minId)
                 .streamMap(EMPLOYEE_MAPPER::map)
                 .toList();
     }
