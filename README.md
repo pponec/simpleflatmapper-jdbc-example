@@ -1,7 +1,7 @@
 # simpleflatmapper-jdbc-example
 
-Example project showcasing JDBC mapping with [SimpleFlatMapper](https://simpleflatmapper.org/) — a lightweight library that makes JDBC easy, fast, and safe to use.
-Includes sample entities, DAO and service layers, along with JUnit tests for studying repository and mapping patterns.
+Example Java project demonstrating how to map a ResultSet object — built using a [SqlParamBuilder](https://github.com/pponec/PPScriptsForJava/blob/main/docs/SqlParamBuilder.md) class — into POJO entities with the [SimpleFlatMapper](https://simpleflatmapper.org/) library, a lightweight tool that makes JDBC easy, fast, and safe to use.
+The project includes sample entities, DAO and service layers, along with JUnit tests for studying repository and mapping patterns.
 
 See an example of a DAO method:
 
