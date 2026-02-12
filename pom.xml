@@ -13,7 +13,7 @@
         <maven.compiler.target>25</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <lombok.version>1.18.42</lombok.version>
-        <ujorm.version>2.25</ujorm.version>
+        <ujorm.version>2.30</ujorm.version>
         <jakarta.persistence.version>3.1.0</jakarta.persistence.version>
     </properties>
 
