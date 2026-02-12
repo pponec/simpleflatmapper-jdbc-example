@@ -34,8 +34,7 @@ public List<Employee> findAllEmployees(Long id) throws SQLException {
     }
 }
 ```
-
-for the Employee entity:
+See a link to the original [DAO class](https://github.com/pponec/simpleflatmapper-jdbc-example/blob/main/src/main/java/net/ponec/jdbc/dao/EmployeeDao.java) and the next a code for the Employee entity:
 
 ```java
 @Getter @Setter @ToString @EqualsAndHashCode @AllArgsConstructor(staticName = "of")
@@ -56,5 +55,7 @@ public class Employee {
     private LocalDate contractDay;
 }
 ```
+
+
 
 For more information about [SqlParamBuilder](https://github.com/pponec/PPScriptsForJava/blob/22c7f7995f8708268bab5ab61f5a10778c302adb/src/main/java/net/ponec/script/SqlExecutor.java#L130) class see the [home page](https://github.com/pponec/PPScriptsForJava/blob/main/docs/SqlParamBuilder.md).
