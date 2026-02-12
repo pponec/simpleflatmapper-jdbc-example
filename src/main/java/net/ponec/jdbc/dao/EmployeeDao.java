@@ -20,7 +20,7 @@ public class EmployeeDao extends GenericCrudManager<Employee, Long> {
     }
 
     /** Test the creation and retrieval of a Country entity. */
-    public List<Employee> findAllEmployees(Long id) throws SQLException {
+    public List<Employee> findAllEmployees(Long minId) throws SQLException {
         var sql = """
                 SELECT e.id
                      , e.name
@@ -42,7 +42,7 @@ public class EmployeeDao extends GenericCrudManager<Employee, Long> {
         try (var builder = sqlBuilder()) {
             return builder
                     .sql(sql)
-                    .bind("id", id)
+                    .bind("id", minId)
                     .streamMap(EMPLOYEE_MAPPER::map)
                     .toList();
         }
